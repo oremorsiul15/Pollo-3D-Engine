@@ -97,8 +97,10 @@ namespace pollo
     VkInstanceCreateInfo createInfo = {};
     createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
     createInfo.pApplicationInfo = &appInfo;
+    createInfo.flags = VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR; // ADD FLAG FOR M1
 
     auto extensions = getRequiredExtensions();
+    extensions.push_back("VK_KHR_portability_enumeration"); // ADD TO VECTOR
     createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
     createInfo.ppEnabledExtensionNames = extensions.data();
 

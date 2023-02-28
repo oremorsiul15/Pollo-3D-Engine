@@ -2,6 +2,7 @@
 
 #include "pollo_window.hpp"
 #include "pollo_pipeline.hpp"
+#include "pollo_device.hpp"
 
 namespace pollo
 {
@@ -14,7 +15,12 @@ namespace pollo
         void run();
 
     private:
-        PolloWindow polloWindow{WIDTH, HEIGHT, "Hello Vulkan"};
-        PolloPipeline polloPipeline{"shaders/simple_shader.vert.spv", "shaders/simple_shader.frag.spv"};
+        PolloWindow polloWindow{WIDTH, HEIGHT, "Pollo 3D"};
+        PolloDevice polloDevice{polloWindow};
+        PolloPipeline polloPipeline{
+            polloDevice,
+            "shaders/simple_shader.vert.spv",
+            "shaders/simple_shader.frag.spv",
+            PolloPipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT)};
     };
 } // namespace pollo
